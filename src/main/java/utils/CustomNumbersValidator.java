@@ -8,7 +8,7 @@ import java.util.List;
 public class CustomNumbersValidator {
 
     private static final Logger logger = Logger.getLogger(CustomNumbersValidator.class);
-    //private static final String DELIMITER = "\\d\\s+";
+    private static final String DELIMITER = "\\d\\s+";
 
     public static boolean areNumbersValid(List<String> stringNumbers) throws CustomNumberException {
         if (stringNumbers == null) {
