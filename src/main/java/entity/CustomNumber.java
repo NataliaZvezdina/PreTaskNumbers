@@ -6,7 +6,7 @@ public class CustomNumber {
 
     private double value;
 
-    public CustomNumber(Double value) {
+    private CustomNumber(Double value) {
         this.value = value;
     }
 
@@ -32,7 +32,7 @@ public class CustomNumber {
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Double.hashCode(value);
     }
 
     @Override

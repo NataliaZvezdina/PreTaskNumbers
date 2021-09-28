@@ -8,25 +8,26 @@ import java.util.List;
 public class CustomNumbersValidator {
 
     private static final Logger logger = Logger.getLogger(CustomNumbersValidator.class);
-    private static final String DELIMITER = "\\d\\s+";
 
-    public static boolean areNumbersValid(List<String> stringNumbers) throws CustomNumberException {
+    public void areNumbersValid(List<String> stringNumbers) throws CustomNumberException {
+        logger.info("Checking data on validation");
+
         if (stringNumbers == null) {
             logger.error("No numbers found");
             throw new CustomNumberException("No numbers found");
         }
 
         if (stringNumbers.size() != 2) {
-            logger.error("More than two numbers");
-            throw new CustomNumberException("More than two numbers");
+            logger.error("Quantity of numbers is not two");
+            throw new CustomNumberException("Quantity of numbers is not two");
         }
 
         for (String stringNumber : stringNumbers) {
             if (!stringNumber.matches("[0-9]+[\\.]?[0-9]*")) {
-                return false;
+                logger.error("File contain non-numeric value");
+                throw new CustomNumberException("File contain non-numeric value");
             }
         }
-        return true;
     }
 
 }

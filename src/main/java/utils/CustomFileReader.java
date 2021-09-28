@@ -11,16 +11,15 @@ import java.util.List;
 public class CustomFileReader {
 
     private static final Logger logger = Logger.getLogger(CustomFileReader.class);
-    private static final String DELIMITER = "[\\s]+";
+    private static final String DELIMITER = "\\s+";
 
-    public static List<String> readFile(String pathFile) throws CustomNumberException {
+    public List<String> readFile(String pathFile) throws CustomNumberException {
         if (pathFile == null) {
             logger.error("No path file input");
             throw new CustomNumberException("No path file input");
         }
 
         File file = new File(pathFile);
-
 
         if (!file.exists()) {
             logger.error("File by pathname: " + pathFile + " doesn't exist");
@@ -36,6 +35,7 @@ public class CustomFileReader {
             br = new BufferedReader(new FileReader(fileName));
             String line;
 
+            logger.info("Start reading file: " + fileName);
             while ((line = br.readLine()) != null) {
                 if (!line.isEmpty()) {
                     String[] stringNumbers = line.split(DELIMITER);
@@ -44,18 +44,19 @@ public class CustomFileReader {
             }
         } catch (IOException e) {
             logger.error("Error while reading file " + fileName);
-
-
+            throw new CustomNumberException("Error while working with stream", e);
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     logger.error("Error while closing stream");
+                    throw new CustomNumberException("Error while closing stream", e);
                 }
             }
         }
 
+        logger.info("Finish reading file: " + fileName);
         return allStringNumbers;
     }
 }
