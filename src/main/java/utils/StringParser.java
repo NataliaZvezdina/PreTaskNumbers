@@ -6,10 +6,6 @@ public class StringParser {
     private static final Logger logger = Logger.getLogger(StringParser.class);
 
     public double[] parse(List<String> stringNumbers) {
-//        if (!CustomNumbersValidator.areNumbersValid(stringNumbers)) {
-//            logger.error("Cannot parse, not numeric value exist");
-//            throw new CustomNumberException("Cannot parse, not numeric value exist");
-//        }
         logger.info("Parsing numbers");
 
         double num1 = Double.parseDouble(stringNumbers.get(0));
